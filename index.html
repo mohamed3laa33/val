@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will you be my Valentine?</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffeef8 0%, #fff5f5 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .gif-image {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    .result-image {
+      max-width: 400px;
+      max-height: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #e75480;
+      margin-bottom: 30px;
+    }
+
+    .result-text {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #e75480;
+      margin-top: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-yes {
+      background-color: #22c55e;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-yes:hover {
+      background-color: #16a34a;
+      transform: scale(1.05);
+    }
+
+    .btn-no {
+      background-color: #ef4444;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-no:hover {
+      background-color: #dc2626;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Question View -->
+    <div id="question-view">
+      <img
+        class="gif-image"
+        src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif"
+        alt="Cute bear with roses"
+      >
+      <h1>Will you be my Valentine?</h1>
+      <div class="buttons">
+        <button class="btn-yes" id="yes-btn" onclick="sayYes()">Yes</button>
+        <button class="btn-no" id="no-btn" onclick="sayNo()">No</button>
+      </div>
+    </div>
+
+    <!-- Result View (shown after Yes is clicked) -->
+    <div id="result-view" class="hidden">
+      <img
+        class="result-image"
+        src="valentine-image.webp"
+        alt="Valentine's Day"
+      >
+      <div class="result-text">Happy Valentine's Day! 💔</div>
+    </div>
+  </div>
+
+  <script>
+    let noCount = 0;
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+
+    const phrases = [
+      "No",
+      "Are you sure?",
+      "Really sure?",
+      "Think again!",
+      "Last chance!",
+      "Surely not?",
+      "You might regret this!",
+      "Give it another thought!",
+      "Are you absolutely certain?",
+      "This could be a mistake!",
+      "Have a heart!",
+      "Don't be so cold!",
+      "Change of heart?",
+      "Wouldn't you reconsider?",
+      "Is that your final answer?",
+      "You're breaking my heart ;("
+    ];
+
+    function sayYes() {
+      document.getElementById('question-view').classList.add('hidden');
+      document.getElementById('result-view').classList.remove('hidden');
+    }
+
+    function sayNo() {
+      noCount++;
+      const yesButtonSize = noCount * 20 + 16;
+      yesBtn.style.fontSize = yesButtonSize + 'px';
+      yesBtn.style.padding = (10 + noCount * 5) + 'px ' + (20 + noCount * 10) + 'px';
+      noBtn.textContent = phrases[Math.min(noCount, phrases.length - 1)];
+    }
+  </script>
+</body>
+</html>
